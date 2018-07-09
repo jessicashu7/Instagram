@@ -7,6 +7,10 @@
 //
 
 #import "FeedViewController.h"
+#import <Parse/Parse.h>
+#import "AppDelegate.h"
+#import "LoginViewController.h"
+
 
 @interface FeedViewController ()
 
@@ -22,6 +26,24 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)logout:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        // PFUser.current() will now be nil
+        if (error){
+            NSLog(@"error logging out: %@", error.localizedDescription);
+        }
+        else {
+            NSLog(@"user logged out successfully");
+            AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            LoginViewController *loginViewController =  [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            appDelegate.window.rootViewController = loginViewController;
+            
+        }
+    }];
 }
 
 /*

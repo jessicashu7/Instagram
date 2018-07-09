@@ -13,7 +13,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="loginSegue" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -72,7 +72,7 @@
         <!--Feed View Controller-->
         <scene sceneID="cIy-xJ-U0f">
             <objects>
-                <viewController id="3g6-kF-FvD" customClass="FeedViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedViewController" id="3g6-kF-FvD" customClass="FeedViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lSF-0E-bKy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -80,7 +80,11 @@
                         <viewLayoutGuide key="safeArea" id="ofe-bN-2AS"/>
                     </view>
                     <navigationItem key="navigationItem" id="A6h-Iw-VH5">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Mk8-2Q-zqa"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="Mk8-2Q-zqa">
+                            <connections>
+                                <action selector="logout:" destination="3g6-kF-FvD" id="lxY-BS-VWK"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eAJ-Ud-jQ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -90,7 +94,7 @@
         <!--Navigation Controller-->
         <scene sceneID="N5F-bs-yxl">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mUs-fE-o9T" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="FeedNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="mUs-fE-o9T" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7zT-0V-0Gb">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>

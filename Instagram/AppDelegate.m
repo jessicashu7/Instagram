@@ -28,6 +28,15 @@
     
     [Parse initializeWithConfiguration:config];
 
+    PFUser *user = [PFUser currentUser];
+    if (user != nil) {
+        NSLog(@"Welcome back %@ 😀", user.username);
+        
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *feedNavigationController = [storyboard instantiateViewControllerWithIdentifier:@"FeedNavigationViewController"];
+        self.window.rootViewController = feedNavigationController;
+    }
+    /*
     PFObject *gameScore = [PFObject objectWithClassName:@"GameScore"];
     gameScore[@"score"] = @1337;
     gameScore[@"playerName"] = @"San Plott";
@@ -40,7 +49,7 @@
             NSLog(@"Error: %@", error.description);
         }
     }];
-    
+    */
     return YES;
 }
 
