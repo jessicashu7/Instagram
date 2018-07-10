@@ -72,13 +72,34 @@
             NSLog(@"fetched posts successfully");
             self.posts = posts;
             [self.tableView reloadData];
+            NSLog(@"end refresh when fetch post successful");
+            [self.refreshControl endRefreshing];
+            
+
         }
         else {
             NSLog(@"error fetching posts: %@", error.localizedDescription);
+            [self noNetworkAlert];
         }
-        [self.refreshControl endRefreshing];
     }];
 }
+
+- (void)noNetworkAlert {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Network Error" message:@"Check you connection" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+        // handle response here
+        [self.refreshControl endRefreshing];
+    }];
+    
+    //create the OK action to the alert controller
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:^{
+        // optional code for what happens after the alert controller has finished presenting
+        
+    }];
+}
+
 /*
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];

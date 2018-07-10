@@ -10,6 +10,7 @@
 #import "Post.h"
 
 @interface CreatePostViewController ()
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 
 @end
 
@@ -31,12 +32,14 @@
         if (succeeded){
             NSLog(@"Post Success!");
             [self.delegate didPost];
+            [self dismissViewControllerAnimated:true completion:nil];
+
         }
         else {
             NSLog(@"Error posting image: %@", error.localizedDescription);
+            [self noNetworkAlert];
             
         }
-        [self dismissViewControllerAnimated:true completion:nil];
         
     }];
 }
@@ -55,7 +58,22 @@
     self.postImageView.image = self.image;
 }
 
+- (void)noNetworkAlert {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Network Error" message:@"Check you connection" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+        // handle response here
+        [self dismissViewControllerAnimated:true completion:nil];
 
+    }];
+    
+    //create the OK action to the alert controller
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:^{
+        // optional code for what happens after the alert controller has finished presenting
+        
+    }];
+}
 /*
 #pragma mark - Navigation
 
