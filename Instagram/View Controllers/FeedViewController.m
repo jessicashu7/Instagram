@@ -76,7 +76,7 @@
         }
     }];
 }
-
+/*
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
@@ -89,7 +89,7 @@
     UIGraphicsEndImageContext();
     
     return newImage;
-}
+} */
 
 - (void)createImagePickerController {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
@@ -110,7 +110,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(nonnull NSDictionary<NSString *,id> *)info {
     // Get thew image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+  //  UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
     // Do something with the images (based on your use case)
     
