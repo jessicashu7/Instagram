@@ -13,7 +13,7 @@ The following **required** functionality is completed:
 - [x] The current signed in user is persisted across app restarts
 - [x] User can take a photo, add a caption, and post it to "Instagram"
 - [x] User can view the last 20 posts submitted to "Instagram"
-- [X] User can pull to refresh the last 20 posts submitted to "Instagram"
+- [x] User can pull to refresh the last 20 posts submitted to "Instagram"
 - [ ] User can tap a post to view post details, including timestamp and caption.
 
 The following **optional** features are implemented:
@@ -35,7 +35,8 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [X] AlertControllers implemented for when there is no connection to Internet
+- [x] AlertControllers implemented for when there is no connection to Internet
+- [x] added loading HUD when share post button is pressed
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -53,6 +54,7 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
 - [Instagram UI](https://www.iconfinder.com/iconsets/instagram-ui) - icon set
+- [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD) - progress HUD library
 
 ## Notes
 
