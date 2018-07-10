@@ -10,7 +10,8 @@
 #import <Parse/Parse.h>
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-
+#import "PostCell.h"
+#import "CreatePostViewController.h"
 
 @interface FeedViewController ()
 
@@ -24,20 +25,6 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    
-    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
-    imagePickerVC.delegate = self;
-    imagePickerVC.allowsEditing = YES;
-    //imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-    
-    if ([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypeCamera)]){
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
-    }
-    else {
-        NSLog(@"Camera 🚫 available so we will use photo library instead");
-        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    }
-    [self presentViewController:imagePickerVC animated:YES completion:nil];
 
 }
 
@@ -64,6 +51,12 @@
     }];
 }
 
+- (IBAction)post:(id)sender {
+    [self createImagePickerController];
+
+}
+
+
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
     
@@ -78,6 +71,22 @@
     return newImage;
 }
 
+- (void)createImagePickerController {
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
+    //imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    if ([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypeCamera)]){
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else {
+        NSLog(@"Camera 🚫 available so we will use photo library instead");
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
+}
+
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(nonnull NSDictionary<NSString *,id> *)info {
     // Get thew image captured by the UIImagePickerController
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
@@ -86,7 +95,9 @@
     // Do something with the images (based on your use case)
     
     // Dismess UIImagePickerController to go back to your original view controller
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:^(){
+        [self performSegueWithIdentifier:@"CreatePostSegue" sender:originalImage];
+    }];
     
     
 }
@@ -96,20 +107,26 @@
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
+    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
     return cell;
 }
 
 
-/*
+
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
  - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
+     if ([segue.identifier isEqual:@"CreatePostSegue"]){
+         UIImage *image = sender;
+         UINavigationController *navigationController =  [segue destinationViewController];
+         CreatePostViewController *createPostViewController = (CreatePostViewController*)navigationController.topViewController;
+         createPostViewController.image = image;
+     }
  }
- */
+
 
 
 

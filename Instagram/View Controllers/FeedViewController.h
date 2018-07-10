@@ -11,5 +11,6 @@
 @interface FeedViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) NSArray* posts;
 
 @end
