@@ -24,7 +24,7 @@ The following **optional** features are implemented:
 - [ ] User can use a tab bar to switch between all "Instagram" posts and posts published only by the user. AKA, tabs for Home Feed and Profile
 - [ ] User can load more posts once he or she reaches the bottom of the feed using infinite scrolling.
 - [ ] Show the username and creation time for each post
-- [ ] After the user submits a new post, show a progress HUD while the post is being uploaded to Parse
+- [x] After the user submits a new post, show a progress HUD while the post is being uploaded to Parse
 - User Profiles:
    - [ ] Allow the logged in user to add a profile photo
    - [ ] Display the profile photo with each post
@@ -36,7 +36,6 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [x] AlertControllers implemented for when there is no connection to Internet
-- [x] added loading HUD when share post button is pressed
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
