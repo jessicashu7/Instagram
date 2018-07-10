@@ -25,6 +25,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)didTap:(id)sender {
+    [self.view endEditing:YES];
+}
+
+
+
 - (IBAction)loginUser:(id)sender {
     NSString *username = self.usernameTextField.text;
     NSString *password = self.passwordTextField.text;

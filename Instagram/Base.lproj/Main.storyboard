@@ -49,7 +49,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="password"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kh7-3K-q2K">
                                 <rect key="frame" x="83" y="385" width="208" height="30"/>
@@ -75,6 +75,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ScL-db-FRm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1CL-mU-NES"/>
                             <constraint firstItem="KLA-5k-u8p" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Knx-57-WLT"/>
@@ -88,6 +89,9 @@
                             <constraint firstItem="ScL-db-FRm" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.3" id="zPT-SS-TLi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="9cT-cG-6Z3" appends="YES" id="Fk6-eW-8YM"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="passwordTextField" destination="KLA-5k-u8p" id="Af8-NU-KEO"/>
@@ -96,6 +100,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="9cT-cG-6Z3">
+                    <connections>
+                        <action selector="didTap:" destination="BYZ-38-t0r" id="Q58-ek-aTO"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
@@ -239,6 +248,7 @@
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Cpd-vP-taz" firstAttribute="leading" secondItem="RHd-32-r9o" secondAttribute="leading" constant="15" id="c7E-JI-WOT"/>
                             <constraint firstItem="Cpd-vP-taz" firstAttribute="top" secondItem="KXb-Z3-BxR" secondAttribute="bottom" constant="20" id="gQu-Pv-4Dh"/>
@@ -246,6 +256,9 @@
                             <constraint firstItem="KXb-Z3-BxR" firstAttribute="leading" secondItem="RHd-32-r9o" secondAttribute="leading" constant="15" id="mT6-Yr-iYZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RHd-32-r9o"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="7yC-ab-Xre" appends="YES" id="7O1-4Y-paH"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="LnE-GB-CWu">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="oW9-Hp-VMk">
@@ -265,6 +278,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8gB-fA-i7O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="7yC-ab-Xre">
+                    <connections>
+                        <action selector="onTap:" destination="Q9u-P5-VQF" id="Nv7-Qb-GPi"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2749.5999999999999" y="919.79010494752629"/>
         </scene>
