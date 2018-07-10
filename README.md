@@ -1,4 +1,4 @@
-#CodePath Project 4 - Instagram
+# CodePath Project 4 - Instagram
 
 Instagram is a photo sharing app using Parse as its backend.
 
