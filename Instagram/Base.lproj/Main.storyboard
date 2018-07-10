@@ -76,7 +76,29 @@
                     <view key="view" contentMode="scaleToFill" id="lSF-0E-bKy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jDk-u8-DWv">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="OJp-4c-nvr">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OJp-4c-nvr" id="fv7-WE-zaz">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="jDk-u8-DWv" firstAttribute="leading" secondItem="ofe-bN-2AS" secondAttribute="leading" id="At0-xc-eXy"/>
+                            <constraint firstItem="jDk-u8-DWv" firstAttribute="trailing" secondItem="ofe-bN-2AS" secondAttribute="trailing" id="fj2-Je-G2b"/>
+                            <constraint firstItem="jDk-u8-DWv" firstAttribute="bottom" secondItem="ofe-bN-2AS" secondAttribute="bottom" id="w1r-uC-yYr"/>
+                            <constraint firstItem="jDk-u8-DWv" firstAttribute="top" secondItem="lSF-0E-bKy" secondAttribute="top" id="zaK-aa-MQG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ofe-bN-2AS"/>
                     </view>
                     <navigationItem key="navigationItem" id="A6h-Iw-VH5">
@@ -86,6 +108,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="jDk-u8-DWv" id="eSc-2w-C93"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eAJ-Ud-jQ5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
