@@ -8,6 +8,7 @@
 
 #import "CreatePostViewController.h"
 #import "Post.h"
+#import "SVProgressHUD.h"
 
 @interface CreatePostViewController ()
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -28,7 +29,9 @@
 }
 
 - (IBAction)shareButton:(id)sender {
+    [SVProgressHUD show];
     [Post postUserImage:self.image withCaption:self.captionTextField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [SVProgressHUD dismiss];
         if (succeeded){
             NSLog(@"Post Success!");
             [self.delegate didPost];
