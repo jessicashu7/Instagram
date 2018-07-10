@@ -15,6 +15,7 @@
 
 @interface FeedViewController () 
 
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation FeedViewController
@@ -26,6 +27,10 @@
     self.tableView.dataSource = self;
     
     [self fetchPosts];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -66,14 +71,12 @@
         if (posts != nil){
             NSLog(@"fetched posts successfully");
             self.posts = posts;
-            for (Post* post in posts){
-                NSLog(@"%@", post.author);
-            }
             [self.tableView reloadData];
         }
         else {
             NSLog(@"error fetching posts: %@", error.localizedDescription);
         }
+        [self.refreshControl endRefreshing];
     }];
 }
 /*
