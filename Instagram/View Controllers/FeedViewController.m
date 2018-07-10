@@ -13,7 +13,7 @@
 #import "PostCell.h"
 #import "CreatePostViewController.h"
 
-@interface FeedViewController ()
+@interface FeedViewController () 
 
 @end
 
@@ -25,7 +25,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-
+    [self fetchPosts];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,6 +56,26 @@
 
 }
 
+- (void) fetchPosts {
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query orderByDescending:@"createdAt"];
+    [query includeKey:@"author"];
+    
+    //fetch data asynchronously
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError * _Nullable error) {
+        if (posts != nil){
+            NSLog(@"fetched posts successfully");
+            self.posts = posts;
+            for (Post* post in posts){
+                NSLog(@"%@", post.author);
+            }
+            [self.tableView reloadData];
+        }
+        else {
+            NSLog(@"error fetching posts: %@", error.localizedDescription);
+        }
+    }];
+}
 
 - (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
     UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
@@ -99,17 +119,23 @@
         [self performSegueWithIdentifier:@"CreatePostSegue" sender:originalImage];
     }];
     
-    
 }
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.posts.count;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell" forIndexPath:indexPath];
+    Post* post = self.posts[indexPath.row];
+    cell.post = post;
     return cell;
 }
+
+- (void)didPost {
+    [self fetchPosts];
+}
+
 
 
 
@@ -124,6 +150,7 @@
          UINavigationController *navigationController =  [segue destinationViewController];
          CreatePostViewController *createPostViewController = (CreatePostViewController*)navigationController.topViewController;
          createPostViewController.image = image;
+         createPostViewController.delegate = self;
      }
  }
 

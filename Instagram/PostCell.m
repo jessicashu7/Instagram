@@ -28,6 +28,11 @@
 }
 
 - (void) refreshData {
+    self.userLabel.text = self.post.author.username;
+    self.postImageView.file = self.post.image;
+    [self.postImageView loadInBackground];
+    self.captionLabel.text = self.post.caption;
+
     
 }
 

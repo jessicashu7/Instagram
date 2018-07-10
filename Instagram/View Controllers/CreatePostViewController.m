@@ -46,7 +46,7 @@
 }
 
 
-- (void)setImage:(UIImage *)image{
+- (void)setImage:(UIImage *)image {
     _image = image;
     [self refreshData];
 }
