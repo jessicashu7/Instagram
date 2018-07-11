@@ -133,14 +133,14 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(nonnull NSDictionary<NSString *,id> *)info {
     // Get thew image captured by the UIImagePickerController
-    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
-  //  UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+  //  UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     
     // Do something with the images (based on your use case)
     
     // Dismess UIImagePickerController to go back to your original view controller
     [self dismissViewControllerAnimated:YES completion:^(){
-        [self performSegueWithIdentifier:@"CreatePostSegue" sender:originalImage];
+        [self performSegueWithIdentifier:@"CreatePostSegue" sender:editedImage];
     }];
     
 }

@@ -19,6 +19,7 @@
 		297EF9DC20F4173C004CFC49 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EF9DB20F4173C004CFC49 /* LoginViewController.m */; };
 		297EF9DF20F41D20004CFC49 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EF9DE20F41D20004CFC49 /* FeedViewController.m */; };
 		297EF9E220F437C1004CFC49 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EF9E120F437C1004CFC49 /* Post.m */; };
+		29E10C5820F6877F009B9396 /* DetailPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E10C5720F6877F009B9396 /* DetailPostViewController.m */; };
 		3A5E0B0E1E503C0745CDB4C2 /* libPods-InstagramTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B551F21C551C550CD4FAB3D /* libPods-InstagramTests.a */; };
 		78F1A508B09F5CCF199F8968 /* libPods-InstagramUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 318CE770E1CDB1A22689D69A /* libPods-InstagramUITests.a */; };
 		ACA9FA55FB0560FD5768C550 /* libPods-Instagram.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B46CB969FB910BE3C2CAE3BC /* libPods-Instagram.a */; };
@@ -67,6 +68,8 @@
 		297EF9DE20F41D20004CFC49 /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		297EF9E020F437C1004CFC49 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		297EF9E120F437C1004CFC49 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		29E10C5620F6877F009B9396 /* DetailPostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailPostViewController.h; sourceTree = "<group>"; };
+		29E10C5720F6877F009B9396 /* DetailPostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailPostViewController.m; sourceTree = "<group>"; };
 		318CE770E1CDB1A22689D69A /* libPods-InstagramUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InstagramUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		53867B09C182800070A42B7A /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
 		584F4F0BEFA6134C79C9E08D /* Pods-Instagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Instagram/Pods-Instagram.debug.xcconfig"; sourceTree = "<group>"; };
@@ -193,6 +196,8 @@
 				297EF9DE20F41D20004CFC49 /* FeedViewController.m */,
 				2974B8A020F5247200BF7896 /* CreatePostViewController.h */,
 				2974B8A120F5247200BF7896 /* CreatePostViewController.m */,
+				29E10C5620F6877F009B9396 /* DetailPostViewController.h */,
+				29E10C5720F6877F009B9396 /* DetailPostViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -371,6 +376,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Instagram/Pods-Instagram-resources.sh",
+				"${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/en.lproj",
 				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/fr.lproj",
@@ -379,6 +385,7 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DateTools.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Parse.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.lproj",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fr.lproj",
@@ -438,6 +445,7 @@
 				297EF9A720F4091D004CFC49 /* AppDelegate.m in Sources */,
 				297EF9DF20F41D20004CFC49 /* FeedViewController.m in Sources */,
 				297EF9DC20F4173C004CFC49 /* LoginViewController.m in Sources */,
+				29E10C5820F6877F009B9396 /* DetailPostViewController.m in Sources */,
 				2974B8A220F5247200BF7896 /* CreatePostViewController.m in Sources */,
 				294AA6C420F48A100031BCF6 /* PostCell.m in Sources */,
 			);
