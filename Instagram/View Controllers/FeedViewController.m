@@ -12,6 +12,7 @@
 #import "LoginViewController.h"
 #import "PostCell.h"
 #import "CreatePostViewController.h"
+#import "DetailPostViewController.h"
 
 @interface FeedViewController () 
 
@@ -176,6 +177,12 @@
          createPostViewController.image = image;
          createPostViewController.delegate = self;
      }
+     else if ([segue.identifier isEqual:@"DetailPostSegue"]){
+        PostCell *cell = sender;
+         DetailPostViewController *detailPostViewController = [segue destinationViewController];
+         detailPostViewController.post = cell.post;
+     }
+     
  }
 
 

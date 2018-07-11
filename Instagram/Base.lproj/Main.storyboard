@@ -205,7 +205,7 @@
                                             <outlet property="postImageView" destination="7pZ-rb-rbU" id="4wI-yH-Mq7"/>
                                             <outlet property="timeLabel" destination="qB6-7X-8ay" id="qNA-ug-mVo"/>
                                             <outlet property="userLabel" destination="8TH-xA-cqz" id="naW-WI-zR3"/>
-                                            <segue destination="2eD-vL-Mvu" kind="show" id="IyQ-1O-Pqk"/>
+                                            <segue destination="2eD-vL-Mvu" kind="show" identifier="DetailPostSegue" id="IyQ-1O-Pqk"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -366,9 +366,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36F-0U-hka">
-                                <rect key="frame" x="14" y="457" width="345" height="20.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="36F-0U-hka">
+                                <rect key="frame" x="16" y="452" width="59.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments go here" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ymd-xl-QhK">
+                                <rect key="frame" x="16" y="480.5" width="146" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -376,20 +381,30 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Ymd-xl-QhK" firstAttribute="top" secondItem="36F-0U-hka" secondAttribute="bottom" constant="8" id="7la-y9-Ltz"/>
                             <constraint firstItem="Rax-u0-Fka" firstAttribute="leading" secondItem="tTn-Ua-vDU" secondAttribute="trailing" constant="8" id="9wM-Rx-MwK"/>
+                            <constraint firstItem="36F-0U-hka" firstAttribute="leading" secondItem="Glh-cF-nOZ" secondAttribute="leading" constant="16" id="CBt-M8-qUd"/>
                             <constraint firstItem="gjK-0y-BI2" firstAttribute="top" secondItem="tTn-Ua-vDU" secondAttribute="bottom" constant="8" id="FCd-QY-FKM"/>
                             <constraint firstAttribute="trailing" secondItem="sUA-o6-AgR" secondAttribute="trailing" id="Oox-DW-ooq"/>
                             <constraint firstItem="HQB-ll-8iY" firstAttribute="leading" secondItem="Glh-cF-nOZ" secondAttribute="leading" constant="16" id="OtN-cp-9Cg"/>
                             <constraint firstItem="Rax-u0-Fka" firstAttribute="top" secondItem="sUA-o6-AgR" secondAttribute="bottom" constant="8" id="UzU-Ew-lM4"/>
                             <constraint firstItem="gjK-0y-BI2" firstAttribute="leading" secondItem="Glh-cF-nOZ" secondAttribute="leading" constant="16" id="YkQ-fW-H1I"/>
+                            <constraint firstItem="Ymd-xl-QhK" firstAttribute="leading" secondItem="Glh-cF-nOZ" secondAttribute="leading" constant="16" id="aD3-Cg-noA"/>
                             <constraint firstItem="HQB-ll-8iY" firstAttribute="top" secondItem="Glh-cF-nOZ" secondAttribute="top" constant="15" id="cA7-2T-qLr"/>
                             <constraint firstItem="sUA-o6-AgR" firstAttribute="top" secondItem="HQB-ll-8iY" secondAttribute="bottom" constant="8" id="iz4-wn-LEi"/>
                             <constraint firstItem="tTn-Ua-vDU" firstAttribute="leading" secondItem="Glh-cF-nOZ" secondAttribute="leading" constant="16" id="msh-9S-kdS"/>
+                            <constraint firstItem="36F-0U-hka" firstAttribute="top" secondItem="gjK-0y-BI2" secondAttribute="bottom" constant="8" id="oYP-LZ-x2z"/>
                             <constraint firstItem="tTn-Ua-vDU" firstAttribute="top" secondItem="sUA-o6-AgR" secondAttribute="bottom" constant="8" id="p7Y-6X-nJ9"/>
                             <constraint firstItem="sUA-o6-AgR" firstAttribute="leading" secondItem="Glh-cF-nOZ" secondAttribute="leading" id="vD8-1N-Y0x"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Glh-cF-nOZ"/>
                     </view>
+                    <connections>
+                        <outlet property="captionLabel" destination="36F-0U-hka" id="1dz-cY-bWZ"/>
+                        <outlet property="postImageView" destination="sUA-o6-AgR" id="v4L-ae-AUa"/>
+                        <outlet property="timeLabel" destination="gjK-0y-BI2" id="BdS-DL-Jd4"/>
+                        <outlet property="userLabel" destination="HQB-ll-8iY" id="ss5-1f-OP3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fbl-O2-EN5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
