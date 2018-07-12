@@ -11,7 +11,7 @@
 
 @implementation Post
 
-@dynamic postID, userID, author, caption, image, likeCount, commentCount;
+@dynamic postID, userID, author, caption, image, likeCount, commentCount, comments;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
@@ -25,6 +25,7 @@
     newPost.caption = caption;
     newPost.likeCount = @(0);
     newPost.commentCount = @(0);
+    newPost.comments = [[NSArray alloc] init];
     
     [newPost saveInBackgroundWithBlock:completion];
 }
@@ -42,6 +43,51 @@
     
     return [PFFile fileWithName:@"image.png" data:imageData];
 }
+
+- (void)didComment:(NSString*)comment withCompletion:(PFBooleanResultBlock _Nullable)completion{
+    Comment *newComment = [Comment new];
+    newComment.author = [PFUser currentUser];
+    newComment.comment = comment;
+    
+    [newComment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error){
+        if (succeeded){
+            NSLog(@"new comment saved");
+            [self updatePostWithComment:newComment withCompletion:completion];
+        }
+        else {
+            NSLog(@"new comment not saved");
+            completion(NO, error);
+        }
+    }];
+    
+}
+
+- (void)updatePostWithComment:(Comment*)comment withCompletion:(PFBooleanResultBlock _Nullable)completion {
+    //NSLog(@"update post called");
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query getObjectInBackgroundWithId:self.objectId block:^(PFObject *post, NSError* error){
+        if (!error){
+            [post addUniqueObject:comment forKey:@"comments"];
+            [post incrementKey:@"commentCount"];
+            [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded){
+                    NSLog(@"post updated with comment");
+                    completion(YES,nil);
+                }
+                else {
+                    NSLog(@"post not updated");
+                    completion(NO, error);
+                }
+            }];
+            
+        }
+        else {
+            NSLog(@"post not retrieved");
+            completion(NO, error);
+        }
+    }];
+}
+
 
 
 @end

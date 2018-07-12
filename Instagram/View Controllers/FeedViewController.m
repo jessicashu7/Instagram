@@ -13,6 +13,8 @@
 #import "PostCell.h"
 #import "CreatePostViewController.h"
 #import "DetailPostViewController.h"
+#import "CommentViewController.h"
+#import "Post.h"
 
 @interface FeedViewController () 
 
@@ -26,12 +28,11 @@
     // Do any additional setup after loading the view.
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
     [self fetchPosts];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
-    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -181,6 +182,13 @@
         PostCell *cell = sender;
          DetailPostViewController *detailPostViewController = [segue destinationViewController];
          detailPostViewController.post = cell.post;
+     }
+     else if ([segue.identifier isEqual:@"CommentSegue"]){
+         PostCell *cell = (PostCell*)[[sender superview] superview];
+         UINavigationController *navigationController =  [segue destinationViewController];
+         CommentViewController *commentViewController = (CommentViewController*)navigationController.topViewController;
+         commentViewController.post = cell.post;
+         
      }
      
  }

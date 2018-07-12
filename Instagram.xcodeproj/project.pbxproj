@@ -19,6 +19,9 @@
 		297EF9DC20F4173C004CFC49 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EF9DB20F4173C004CFC49 /* LoginViewController.m */; };
 		297EF9DF20F41D20004CFC49 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EF9DE20F41D20004CFC49 /* FeedViewController.m */; };
 		297EF9E220F437C1004CFC49 /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 297EF9E120F437C1004CFC49 /* Post.m */; };
+		298A38E820F6B685000FCEF0 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 298A38E720F6B685000FCEF0 /* CommentCell.m */; };
+		298A38EB20F6B820000FCEF0 /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 298A38EA20F6B820000FCEF0 /* CommentViewController.m */; };
+		298A38EE20F6BD42000FCEF0 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 298A38ED20F6BD42000FCEF0 /* Comment.m */; };
 		29E10C5820F6877F009B9396 /* DetailPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E10C5720F6877F009B9396 /* DetailPostViewController.m */; };
 		3A5E0B0E1E503C0745CDB4C2 /* libPods-InstagramTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B551F21C551C550CD4FAB3D /* libPods-InstagramTests.a */; };
 		78F1A508B09F5CCF199F8968 /* libPods-InstagramUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 318CE770E1CDB1A22689D69A /* libPods-InstagramUITests.a */; };
@@ -68,6 +71,12 @@
 		297EF9DE20F41D20004CFC49 /* FeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FeedViewController.m; sourceTree = "<group>"; };
 		297EF9E020F437C1004CFC49 /* Post.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
 		297EF9E120F437C1004CFC49 /* Post.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		298A38E620F6B685000FCEF0 /* CommentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		298A38E720F6B685000FCEF0 /* CommentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		298A38E920F6B820000FCEF0 /* CommentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		298A38EA20F6B820000FCEF0 /* CommentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
+		298A38EC20F6BD42000FCEF0 /* Comment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		298A38ED20F6BD42000FCEF0 /* Comment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		29E10C5620F6877F009B9396 /* DetailPostViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailPostViewController.h; sourceTree = "<group>"; };
 		29E10C5720F6877F009B9396 /* DetailPostViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailPostViewController.m; sourceTree = "<group>"; };
 		318CE770E1CDB1A22689D69A /* libPods-InstagramUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InstagramUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +192,8 @@
 			children = (
 				297EF9E020F437C1004CFC49 /* Post.h */,
 				297EF9E120F437C1004CFC49 /* Post.m */,
+				298A38EC20F6BD42000FCEF0 /* Comment.h */,
+				298A38ED20F6BD42000FCEF0 /* Comment.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -198,6 +209,8 @@
 				2974B8A120F5247200BF7896 /* CreatePostViewController.m */,
 				29E10C5620F6877F009B9396 /* DetailPostViewController.h */,
 				29E10C5720F6877F009B9396 /* DetailPostViewController.m */,
+				298A38E920F6B820000FCEF0 /* CommentViewController.h */,
+				298A38EA20F6B820000FCEF0 /* CommentViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -207,6 +220,8 @@
 			children = (
 				294AA6C220F48A100031BCF6 /* PostCell.h */,
 				294AA6C320F48A100031BCF6 /* PostCell.m */,
+				298A38E620F6B685000FCEF0 /* CommentCell.h */,
+				298A38E720F6B685000FCEF0 /* CommentCell.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -441,8 +456,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				297EF9E220F437C1004CFC49 /* Post.m in Sources */,
+				298A38E820F6B685000FCEF0 /* CommentCell.m in Sources */,
 				297EF9B520F4091F004CFC49 /* main.m in Sources */,
+				298A38EE20F6BD42000FCEF0 /* Comment.m in Sources */,
 				297EF9A720F4091D004CFC49 /* AppDelegate.m in Sources */,
+				298A38EB20F6B820000FCEF0 /* CommentViewController.m in Sources */,
 				297EF9DF20F41D20004CFC49 /* FeedViewController.m in Sources */,
 				297EF9DC20F4173C004CFC49 /* LoginViewController.m in Sources */,
 				29E10C5820F6877F009B9396 /* DetailPostViewController.m in Sources */,

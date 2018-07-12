@@ -7,6 +7,7 @@
 //
 
 #import "DetailPostViewController.h"
+#import "CommentCell.h"
 
 @interface DetailPostViewController ()
 
@@ -18,6 +19,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self refreshData];
+    
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,10 +67,25 @@
     else if ([date minutesAgo] > 60 ) {
         self.timeLabel.text = [NSString stringWithFormat:@"%.fh",[date hoursAgo]];
     }
-    else {
+    else if ([date secondsAgo] > 60 ){
         self.timeLabel.text = [NSString stringWithFormat:@"%.fm",[date minutesAgo]];
     }
+    else {
+        self.timeLabel.text = [NSString stringWithFormat:@"%.fs",[date secondsAgo]];
+    }
     
+    
+}
+
+
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 20;
+}
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    CommentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
+    cell.textLabel.text = @"test again";
+    return cell;
     
 }
 

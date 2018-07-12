@@ -11,13 +11,14 @@
 #import "Post.h"
 #import "DateTools.h"
 
-@interface DetailPostViewController : UIViewController
+@interface DetailPostViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UILabel *userLabel;
 @property (strong, nonatomic) IBOutlet PFImageView *postImageView;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *captionLabel;
 
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) Post* post;
 

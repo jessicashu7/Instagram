@@ -1,26 +1,24 @@
 //
-//  CreatePostViewController.m
+//  CommentViewController.m
 //  Instagram
 //
-//  Created by Jessica Shu on 7/10/18.
+//  Created by Jessica Shu on 7/11/18.
 //  Copyright © 2018 jessicashu7. All rights reserved.
 //
 
-#import "CreatePostViewController.h"
-#import "Post.h"
+#import "CommentViewController.h"
 #import "SVProgressHUD.h"
 
-@interface CreatePostViewController ()
-@property (nonatomic, strong) UIRefreshControl *refreshControl;
+
+@interface CommentViewController ()
 
 @end
 
-@implementation CreatePostViewController
+@implementation CommentViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self refreshData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -28,43 +26,23 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)onTap:(id)sender {
-    [self.view endEditing:YES];
-}
-
-
-- (IBAction)shareButton:(id)sender {
+- (IBAction)tapComment:(id)sender {
+    
     [SVProgressHUD show];
-    [Post postUserImage:self.image withCaption:self.captionTextField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+    [self.post didComment:self.commentTextField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         [SVProgressHUD dismiss];
         if (succeeded){
-            NSLog(@"Post Success!");
-            [self.delegate didPost];
+            NSLog(@"Comment Success!");
             [self dismissViewControllerAnimated:true completion:nil];
-
         }
         else {
-            NSLog(@"Error posting image: %@", error.localizedDescription);
+            NSLog(@"Error commenting: %@", error.localizedDescription);
             [self noNetworkAlert];
-            
         }
-        
     }];
+
 }
 
-- (IBAction)cancelButton:(id)sender {
-    [self dismissViewControllerAnimated:true completion:nil];
-}
-
-
-- (void)setImage:(UIImage *)image {
-    _image = image;
-    [self refreshData];
-}
-
-- (void) refreshData {
-    self.postImageView.image = self.image;
-}
 
 - (void)noNetworkAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Network Error" message:@"Check you connection" preferredStyle:UIAlertControllerStyleAlert];
@@ -72,16 +50,24 @@
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
         // handle response here
         [self dismissViewControllerAnimated:true completion:nil];
-
+        
     }];
     
     //create the OK action to the alert controller
     [alert addAction:okAction];
     [self presentViewController:alert animated:YES completion:^{
         // optional code for what happens after the alert controller has finished presenting
-        
     }];
 }
+- (IBAction)cancel:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (IBAction)didTap:(id)sender {
+    [self.view endEditing:YES];
+}
+
+
 
 /*
 #pragma mark - Navigation
