@@ -11,6 +11,7 @@
 #import "ParseUI.h"
 
 @interface PostCell : UITableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
 @property (weak, nonatomic) IBOutlet PFImageView *postImageView;
 @property (weak, nonatomic) IBOutlet UILabel *captionLabel;

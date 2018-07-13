@@ -141,7 +141,8 @@
     else {
         self.timeLabel.text = [NSString stringWithFormat:@"%.fs",[date secondsAgo]];
     }
-    
+    [self fetchComments];
+
     
 }
 

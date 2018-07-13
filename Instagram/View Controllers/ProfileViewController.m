@@ -8,9 +8,12 @@
 
 #import "ProfileViewController.h"
 #import "PostCell.h"
+#import "CommentViewController.h"
+#import "DetailPostViewController.h"
 
 @interface ProfileViewController ()
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+
 @end
 
 @implementation ProfileViewController
@@ -82,14 +85,26 @@
     return cell;
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqual:@"CommentSegue3"]){
+        PostCell *cell = (PostCell*)[[sender superview] superview];
+        UINavigationController *navigationController =  [segue destinationViewController];
+        CommentViewController *commentViewController = (CommentViewController*)navigationController.topViewController;
+        commentViewController.post = cell.post;
+        
+    }
+    else if ([segue.identifier isEqual:@"DetailPostSegue2"]){
+        PostCell *cell = sender;
+        DetailPostViewController *detailPostViewController = [segue destinationViewController];
+        detailPostViewController.post = cell.post;
+    }
 }
-*/
+
 
 @end

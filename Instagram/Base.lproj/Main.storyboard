@@ -160,6 +160,9 @@
                                                         <constraint firstAttribute="height" constant="40" id="gYP-Ia-Ou4"/>
                                                     </constraints>
                                                     <state key="normal" title="Button" image="comment"/>
+                                                    <connections>
+                                                        <segue destination="0jQ-rI-4Xr" kind="presentation" identifier="CommentSegue3" id="GLz-TV-o3g"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iVo-Kv-kfZ">
                                                     <rect key="frame" x="15" y="312" width="40" height="40"/>
@@ -205,6 +208,7 @@
                                             <outlet property="postImageView" destination="dQ3-D1-Xlj" id="coS-c2-0pk"/>
                                             <outlet property="timeLabel" destination="Ah1-ul-yfs" id="3b9-Dn-Yn5"/>
                                             <outlet property="userLabel" destination="V4x-Lg-nsa" id="rzU-bj-JVa"/>
+                                            <segue destination="2eD-vL-Mvu" kind="show" identifier="DetailPostSegue2" id="cvo-fG-8ij"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -711,6 +715,7 @@
         <image name="profile_tab" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5wR-qQ-ALa"/>
+        <segue reference="bc3-AP-Gpj"/>
+        <segue reference="cvo-fG-8ij"/>
     </inferredMetricsTieBreakers>
 </document>
