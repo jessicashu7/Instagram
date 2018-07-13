@@ -9,12 +9,14 @@ PODS:
     - Bolts/Tasks (~> 1.3)
     - Parse (~> 1.9)
   - SVProgressHUD (2.2.5)
+  - SVPullToRefresh (0.4.1)
 
 DEPENDENCIES:
   - DateTools
   - Parse
   - ParseUI
   - SVProgressHUD
+  - SVPullToRefresh
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -23,6 +25,7 @@ SPEC REPOS:
     - Parse
     - ParseUI
     - SVProgressHUD
+    - SVPullToRefresh
 
 SPEC CHECKSUMS:
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
@@ -30,7 +33,8 @@ SPEC CHECKSUMS:
   Parse: d3edaf8c7c722cb33cb83ba7821d015ae32d362d
   ParseUI: 2b37a0bc692a3e7666cf0c37b5521dfddd74a1af
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SVPullToRefresh: ba2e718695a43253d8bea6852d2960097dc15d8c
 
-PODFILE CHECKSUM: b77794b44b77b8bbccfc6eb3a93799f80227df40
+PODFILE CHECKSUM: 34bace73898bc233226949e54e344d6ca536849e
 
 COCOAPODS: 1.5.3

@@ -15,10 +15,13 @@
 #import "DetailPostViewController.h"
 #import "CommentViewController.h"
 #import "Post.h"
+#import "UIScrollView+SVInfiniteScrolling.h"
 
 @interface FeedViewController () 
 
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+//@property (assign, nonatomic) BOOL isMoreDataLoading;
+@property int queryCount;
 @end
 
 @implementation FeedViewController
@@ -26,13 +29,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.queryCount = 2;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self fetchPosts];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
-
+    
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [self fetchMorePosts];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,16 +74,18 @@
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"author"];
+    query.limit = self.queryCount;
     
     //fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError * _Nullable error) {
         if (posts != nil){
             NSLog(@"fetched posts successfully");
             self.posts = posts;
-            [self.tableView reloadData];
             NSLog(@"end refresh when fetch post successful");
             [self.refreshControl endRefreshing];
-            
+            //self.isMoreDataLoading = false;
+            [self.tableView reloadData];
+            [self.tableView.infiniteScrollingView stopAnimating];
 
         }
         else {
@@ -84,6 +93,11 @@
             [self noNetworkAlert];
         }
     }];
+}
+
+- (void) fetchMorePosts {
+    self.queryCount = self.queryCount + 1;
+    [self fetchPosts];
 }
 
 - (void)noNetworkAlert {
@@ -161,8 +175,19 @@
 - (void)didPost {
     [self fetchPosts];
 }
+/*
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    if (!self.isMoreDataLoading) {
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        if (scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            self.isMoreDataLoading = true;
+            [self fetchMorePosts];
 
-
+        }
+    }
+}
+*/
 
 
  #pragma mark - Navigation
@@ -188,7 +213,6 @@
          UINavigationController *navigationController =  [segue destinationViewController];
          CommentViewController *commentViewController = (CommentViewController*)navigationController.topViewController;
          commentViewController.post = cell.post;
-         
      }
      
  }
