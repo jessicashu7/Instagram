@@ -11,6 +11,8 @@
 #import "CommentViewController.h"
 #import "DetailPostViewController.h"
 #import "UIScrollView+SVInfiniteScrolling.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
 
 @interface ProfileViewController ()
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -35,6 +37,34 @@
     [self.tableView addInfiniteScrollingWithActionHandler:^{
         [self fetchMorePosts];
     }];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)logout:(id)sender {
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        // PFUser.current() will now be nil
+        if (error){
+            NSLog(@"error logging out: %@", error.localizedDescription);
+        }
+        else {
+            NSLog(@"user logged out successfully");
+            AppDelegate *appDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
+            
+            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+            LoginViewController *loginViewController =  [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+            appDelegate.window.rootViewController = loginViewController;
+            
+        }
+    }];
+}
+
+- (IBAction)post:(id)sender {
+    [self createImagePickerController];
+    
 }
 
 - (void) fetchPosts {
@@ -82,10 +112,37 @@
         
     }];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+- (void)createImagePickerController {
+    UIImagePickerController *imagePickerVC = [UIImagePickerController new];
+    imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
+    //imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    
+    if ([UIImagePickerController isSourceTypeAvailable:(UIImagePickerControllerSourceTypeCamera)]){
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
+    }
+    else {
+        NSLog(@"Camera 🚫 available so we will use photo library instead");
+        imagePickerVC.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    [self presentViewController:imagePickerVC animated:YES completion:nil];
 }
+
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(nonnull NSDictionary<NSString *,id> *)info {
+    // Get thew image captured by the UIImagePickerController
+    //  UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    UIImage *editedImage = info[UIImagePickerControllerEditedImage];
+    
+    // Do something with the images (based on your use case)
+    
+    // Dismess UIImagePickerController to go back to your original view controller
+    [self dismissViewControllerAnimated:YES completion:^(){
+        [self performSegueWithIdentifier:@"CreatePostSegue2" sender:editedImage];
+    }];
+    
+}
+
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.posts.count;
@@ -98,6 +155,9 @@
     return cell;
 }
 
+- (void)didPost {
+    [self fetchPosts];
+}
 
 #pragma mark - Navigation
 
@@ -116,6 +176,13 @@
         PostCell *cell = sender;
         DetailPostViewController *detailPostViewController = [segue destinationViewController];
         detailPostViewController.post = cell.post;
+    }
+    else if ([segue.identifier isEqual:@"CreatePostSegue2"]){
+        UIImage *image = sender;
+        UINavigationController *navigationController =  [segue destinationViewController];
+        CreatePostViewController *createPostViewController = (CreatePostViewController*)navigationController.topViewController;
+        createPostViewController.image = image;
+        createPostViewController.delegate = self;
     }
 }
 

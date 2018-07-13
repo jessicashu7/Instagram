@@ -10,7 +10,7 @@
 #import "Post.h"
 @implementation Comment
 
-@dynamic comment, author;
+@dynamic comment, author, post;
 
 + (nonnull NSString *)parseClassName {
     return @"Comment";

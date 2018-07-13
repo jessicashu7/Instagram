@@ -217,9 +217,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="YPK-v4-hUx"/>
                     </view>
-                    <navigationItem key="navigationItem" id="aKP-cM-0KD"/>
+                    <navigationItem key="navigationItem" id="aKP-cM-0KD">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="f9c-DS-oMU">
+                            <connections>
+                                <action selector="logout:" destination="w5n-Kc-QOo" id="1Ue-Tc-rYg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="insta_camera_btn" id="ooo-6i-d4S">
+                            <connections>
+                                <action selector="post:" destination="w5n-Kc-QOo" id="SNu-rc-wp2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="RaD-La-syg" id="xaX-iJ-fJ3"/>
+                        <segue destination="R8n-VU-WBe" kind="presentation" identifier="CreatePostSegue2" id="KKn-AN-ZGh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dlZ-11-xGK" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -575,7 +587,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fbl-O2-EN5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2948" y="133.5832083958021"/>
+            <point key="canvasLocation" x="3287" y="134"/>
         </scene>
         <!--Comment View Controller-->
         <scene sceneID="1bG-nw-etX">
@@ -715,7 +727,8 @@
         <image name="profile_tab" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bc3-AP-Gpj"/>
+        <segue reference="GLz-TV-o3g"/>
+        <segue reference="KKn-AN-ZGh"/>
         <segue reference="cvo-fG-8ij"/>
     </inferredMetricsTieBreakers>
 </document>

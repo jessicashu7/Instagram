@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ParseUI.h"
 #import <Parse/Parse.h>
-@interface ProfileViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+#import "CreatePostViewController.h"
+@interface ProfileViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource, CreatePostControllerDelegate>
 
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

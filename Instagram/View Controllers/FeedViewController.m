@@ -173,19 +173,6 @@
 - (void)didPost {
     [self fetchPosts];
 }
-/*
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    if (!self.isMoreDataLoading) {
-        int scrollViewContentHeight = self.tableView.contentSize.height;
-        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
-        if (scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
-            self.isMoreDataLoading = true;
-            [self fetchMorePosts];
-
-        }
-    }
-}
-*/
 
 
  #pragma mark - Navigation
