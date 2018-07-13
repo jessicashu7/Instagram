@@ -29,6 +29,19 @@
 - (IBAction)tapComment:(id)sender {
     
     [SVProgressHUD show];
+    [Comment updatePostWithComment:self.commentTextField.text withPost:self.post withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
+        [SVProgressHUD dismiss];
+        if (succeeded){
+            NSLog(@"comment success");
+            [self dismissViewControllerAnimated:true completion:nil];
+        }
+        else {
+            NSLog(@"Error commenting: %@", error.localizedDescription);
+            [self noNetworkAlert];
+        }
+    }];
+    
+    /*
     [self.post didComment:self.commentTextField.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         [SVProgressHUD dismiss];
         if (succeeded){
@@ -40,7 +53,7 @@
             [self noNetworkAlert];
         }
     }];
-
+*/
 }
 
 

@@ -11,7 +11,7 @@
 
 @implementation Post
 
-@dynamic postID, userID, author, caption, image, likeCount, commentCount, comments;
+@dynamic postID, userID, author, caption, image, likeCount, commentCount;
 
 + (nonnull NSString *)parseClassName {
     return @"Post";
@@ -25,7 +25,7 @@
     newPost.caption = caption;
     newPost.likeCount = @(0);
     newPost.commentCount = @(0);
-    newPost.comments = [[NSArray alloc] init];
+    //newPost.comments = [[NSArray alloc] init];
     
     [newPost saveInBackgroundWithBlock:completion];
 }
@@ -43,7 +43,7 @@
     
     return [PFFile fileWithName:@"image.png" data:imageData];
 }
-
+/*
 - (void)didComment:(NSString*)comment withCompletion:(PFBooleanResultBlock _Nullable)completion{
     Comment *newComment = [Comment new];
     newComment.author = [PFUser currentUser];
@@ -64,6 +64,39 @@
 
 - (void)updatePostWithComment:(Comment*)comment withCompletion:(PFBooleanResultBlock _Nullable)completion {
     //NSLog(@"update post called");
+   PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query getObjectInBackgroundWithId:self.objectId block:^(PFObject *post, NSError* error){
+        if (!error){
+            NSLog(@"post: %@", post);
+            NSLog(@"create relation... ");
+            self.relation = [post relationForKey:@"comments"];
+            NSLog(@"relation: %@", self.relation);
+            
+            NSLog(@"add comment to relation...");
+            [self.relation addObject:comment];
+        
+            NSLog(@"relation: %@", self.relation);
+            //NSLog(@"increment commentcount on post: ");
+            //[post incrementKey:@"commentCount"];
+            NSLog(@"save post: ");
+            [post saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                if (succeeded){
+                    NSLog(@"post updated with comment");
+                    completion(YES,nil);
+                }
+                else {
+                    NSLog(@"post not updated");
+                    completion(NO, error);
+                }
+            }];
+            
+        }
+        else {
+            NSLog(@"post not retrieved");
+            completion(NO, error);
+        }
+    }];
+
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query getObjectInBackgroundWithId:self.objectId block:^(PFObject *post, NSError* error){
         if (!error){
@@ -86,8 +119,10 @@
             completion(NO, error);
         }
     }];
+ 
 }
 
-
+ 
+*/
 
 @end

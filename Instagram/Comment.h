@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "Post.h"
 
 @interface Comment : PFObject <PFSubclassing>
 
 @property (nonatomic, strong) PFUser *author;
 @property (nonatomic, strong) NSString *comment;
+@property (nonatomic, strong) Post* post;
 
++ (void) updatePostWithComment:(NSString*)comment withPost:(Post*)post withCompletion:(PFBooleanResultBlock _Nullable)completion;
 @end

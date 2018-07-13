@@ -31,6 +31,7 @@
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"author"];
     [query whereKey:@"author" equalTo:[PFUser currentUser]];
+    query.limit = 5;
     
     //fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError * _Nullable error) {

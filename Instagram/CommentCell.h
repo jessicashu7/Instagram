@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Comment.h"
+#import "DateTools.h"
+
 
 @interface CommentCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet UILabel *userLabel;
+@property (strong, nonatomic) IBOutlet UILabel *timeLabel;
+@property (strong, nonatomic) IBOutlet UILabel *commentLabel;
 
-@property (strong, nonatomic) IBOutlet UILabel *testLabel;
-
+@property (strong, nonatomic) Comment* comment;
 @end

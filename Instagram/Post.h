@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
-#import "Comment.h"
 
 @interface Post : PFObject <PFSubclassing, NSObject>
 
@@ -21,13 +20,11 @@
 @property (nonatomic, strong) NSNumber *likeCount;
 @property (nonatomic, strong) NSNumber *commentCount;
 
-@property (nonatomic, strong) NSArray *comments;
+
+//@property (strong, nonatomic, readonly) PFRelation *relation;
+
 
 + (void) postUserImage: ( UIImage * _Nullable )image withCaption: ( NSString * _Nullable )caption withCompletion: (PFBooleanResultBlock  _Nullable)completion;
-
-- (void)didComment:(NSString*)comment withCompletion:(PFBooleanResultBlock _Nullable)completion;
-
-- (void)updatePostWithComment:(Comment*)comment withCompletion:(PFBooleanResultBlock _Nullable)completion;
 
 @end
 

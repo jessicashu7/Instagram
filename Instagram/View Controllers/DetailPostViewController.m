@@ -11,6 +11,9 @@
 
 @interface DetailPostViewController ()
 
+@property (nonatomic, strong) NSArray *comments;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+
 @end
 
 @implementation DetailPostViewController
@@ -23,12 +26,74 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
-    [self.tableView reloadData];
+    [self fetchComments];
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchComments) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void) fetchComments {
+ /*   [self.post fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable post, NSError * _Nullable error) {
+        if (!error){
+            NSLog(@"fetched comments successfully");
+        
+            self.comments = post[@"comments"];
+
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+        }
+        else {
+            
+        }
+    }];
+  
+ 
+    PFQuery *query
+    = [PFQuery queryWithClassName:@"Post"];
+    [query includeKey:@"author"];
+    //[query includeKey:@"comments"];
+    //[query includeKey:@"Comment"];
+    [query getObjectInBackgroundWithId:self.post.objectId block:^(PFObject* post, NSError *error){
+        if (!error){
+            
+            NSLog(@"fetched comments successfully");
+            NSLog(@"%@", post);
+            self.comments = post[@"comments"];
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+
+        }
+        else {
+            NSLog(@"error fetching comments: %@", error.localizedDescription);
+            [self noNetworkAlert];
+
+        }
+    }];
+  */
+    PFQuery *query = [PFQuery queryWithClassName:@"Comment"];
+    [query whereKey:@"post" equalTo:self.post];
+    [query includeKey:@"author"];
+    //[query includeKey:@"post"];
+    [query orderByDescending:@"createdAt"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *cmts, NSError * _Nullable error) {
+        if (cmts != nil){
+            NSLog(@"fetched comments successfully");
+            self.comments = cmts;
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+            
+        }
+        else {
+            NSLog(@"error fetching posts: %@", error.localizedDescription);
+            [self noNetworkAlert];
+        }
+    }];
+    
 }
 
 -(void)setPost:(Post *)post{
@@ -48,17 +113,16 @@
     // Format createdAt date string
     NSDate *date = self.post.createdAt;
     
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    // Configurs the input format to parse the date string
-    formatter.dateFormat = @"E MMM d HH:mm:ss X y";
-    // Convert String to Date
-    //NSDate *date = [formatter dateFromString:createdAtOriginalString];
-    // Convert output format
-    formatter.dateStyle = NSDateFormatterShortStyle;
-    formatter.timeStyle = NSDateFormatterNoStyle;
-    
     // Convert Date to String
     if ([date daysAgo] > 7){
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        // Configurs the input format to parse the date string
+        formatter.dateFormat = @"E MMM d HH:mm:ss X y";
+        // Convert String to Date
+        //NSDate *date = [formatter dateFromString:createdAtOriginalString];
+        // Convert output format
+        formatter.dateStyle = NSDateFormatterShortStyle;
+        formatter.timeStyle = NSDateFormatterNoStyle;
         self.timeLabel.text = [formatter stringFromDate:date];
     }
     else if ([date hoursAgo] > 24) {
@@ -79,16 +143,31 @@
 
 
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.comments.count;
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     CommentCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
-    cell.textLabel.text = @"test again";
+    cell.comment = self.comments[indexPath.row];
     return cell;
     
 }
 
+- (void)noNetworkAlert {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Network Error" message:@"Check you connection" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
+        // handle response here
+        [self.refreshControl endRefreshing];
+
+    }];
+    
+    //create the OK action to the alert controller
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:^{
+        // optional code for what happens after the alert controller has finished presenting
+    }];
+}
 /*
 #pragma mark - Navigation
 

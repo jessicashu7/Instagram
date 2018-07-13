@@ -7,13 +7,23 @@
 //
 
 #import "Comment.h"
-
+#import "Post.h"
 @implementation Comment
 
 @dynamic comment, author;
 
 + (nonnull NSString *)parseClassName {
     return @"Comment";
+}
+
++ (void) updatePostWithComment:(NSString*)comment withPost:(Post*)post withCompletion:(PFBooleanResultBlock  _Nullable)completion {
+    
+    Comment* newComment = [Comment new];
+    newComment.comment = comment;
+    newComment.author = [PFUser currentUser];
+    newComment.post = post;
+    
+    [newComment saveInBackgroundWithBlock:completion];
 }
 
 @end

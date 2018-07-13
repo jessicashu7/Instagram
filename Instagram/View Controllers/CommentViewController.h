@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "Post.h"
-
+#import "Comment.h"
 @interface CommentViewController : UIViewController
 
 //@property (weak, nonatomic) id<CommentControllerDelegate> delegate;
