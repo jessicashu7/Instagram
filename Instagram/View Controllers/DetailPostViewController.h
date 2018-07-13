@@ -10,8 +10,9 @@
 #import <ParseUI/ParseUI.h>
 #import "Post.h"
 #import "DateTools.h"
+#import "CommentViewController.h"
 
-@interface DetailPostViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface DetailPostViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, CreateCommentControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *userLabel;
 @property (strong, nonatomic) IBOutlet PFImageView *postImageView;

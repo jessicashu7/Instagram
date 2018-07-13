@@ -33,7 +33,12 @@
         [SVProgressHUD dismiss];
         if (succeeded){
             NSLog(@"comment success");
+            if (self.delegate){
+                NSLog(@"delegate");
+                [self.delegate didComment];
+            }
             [self dismissViewControllerAnimated:true completion:nil];
+            
         }
         else {
             NSLog(@"Error commenting: %@", error.localizedDescription);

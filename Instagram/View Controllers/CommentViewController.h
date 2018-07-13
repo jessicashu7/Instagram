@@ -10,6 +10,13 @@
 #import <Parse/Parse.h>
 #import "Post.h"
 #import "Comment.h"
+
+@protocol CreateCommentControllerDelegate
+
+- (void) didComment;
+
+@end
+
 @interface CommentViewController : UIViewController
 
 //@property (weak, nonatomic) id<CommentControllerDelegate> delegate;
@@ -17,5 +24,7 @@
 @property (strong, nonatomic) IBOutlet UITextField* commentTextField;
 
 @property (strong, nonatomic) Post* post;
+
+@property (weak, nonatomic) id<CreateCommentControllerDelegate> delegate;
 
 @end

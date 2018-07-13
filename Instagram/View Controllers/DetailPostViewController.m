@@ -8,6 +8,9 @@
 
 #import "DetailPostViewController.h"
 #import "CommentCell.h"
+#import "SVProgressHUD.h"
+#import "PostCell.h"
+#import "CommentViewController.h"
 
 @interface DetailPostViewController ()
 
@@ -36,6 +39,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 - (void) fetchComments {
  /*   [self.post fetchIfNeededInBackgroundWithBlock:^(PFObject * _Nullable post, NSError * _Nullable error) {
@@ -153,6 +157,10 @@
     
 }
 
+- (void) didComment {
+    [self fetchComments];
+}
+
 - (void)noNetworkAlert {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Network Error" message:@"Check you connection" preferredStyle:UIAlertControllerStyleAlert];
     
@@ -168,14 +176,24 @@
         // optional code for what happens after the alert controller has finished presenting
     }];
 }
-/*
+
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    if ([segue.identifier isEqual:@"CommentSegue2"]){
+        UINavigationController *navigationController =  [segue destinationViewController];
+        CommentViewController *commentViewController = (CommentViewController*)navigationController.topViewController;
+        commentViewController.post = self.post;
+        commentViewController.delegate = self;
+        
+    }
 }
-*/
+
 
 @end
