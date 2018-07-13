@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import <Parse/Parse.h>
+#import "SVProgressHUD.h"
 
 @interface LoginViewController ()
 
@@ -34,11 +35,12 @@
 - (IBAction)loginUser:(id)sender {
     NSString *username = self.usernameTextField.text;
     NSString *password = self.passwordTextField.text;
-    
+    [SVProgressHUD show];
     [PFUser logInWithUsernameInBackground:username password:password block:^(PFUser * user, NSError *  error){
+        [SVProgressHUD dismiss];
         if (error != nil) {
             NSLog(@"User log in failed: %@", error.localizedDescription);
-             [self alertControlWithTitleAndMessage:@"Login error" message:@"Username and password does not match"];
+             [self alertControlWithTitleAndMessage:@"Login error" message:error.localizedDescription];
         }
         else {
             NSLog(@"User logged in successfully");
@@ -58,20 +60,23 @@
     // set user properties
     newUser.username = self.usernameTextField.text;
     newUser.password = self.passwordTextField.text;
-    
+    [SVProgressHUD show];
+
     if ([self.usernameTextField.text isEqual:@""] || [self.passwordTextField.text isEqual:@""]){
-        
+        [SVProgressHUD dismiss];
+
         [self alertControlWithTitleAndMessage:@"Sign up error" message:@"Please enter a username and password"];
     } else {
         
         [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            [SVProgressHUD dismiss];
             if (error != nil){
-              [self alertControlWithTitleAndMessage:@"Sign up error" message:@"username taken"];
+              [self alertControlWithTitleAndMessage:@"Sign up error" message:error.localizedDescription];
             }
             else {
                 NSLog(@"User registered successfully");
                 // segue
-                
+                [self alertControlWithTitleAndMessage:@"Congrats" message:@"Sign up success!"];
             }
         }];
         

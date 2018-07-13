@@ -206,8 +206,8 @@
 			children = (
 				297EF9DA20F4173C004CFC49 /* LoginViewController.h */,
 				297EF9DB20F4173C004CFC49 /* LoginViewController.m */,
-				297EF9DD20F41D20004CFC49 /* FeedViewController.h */,
 				297EF9DE20F41D20004CFC49 /* FeedViewController.m */,
+				297EF9DD20F41D20004CFC49 /* FeedViewController.h */,
 				2974B8A020F5247200BF7896 /* CreatePostViewController.h */,
 				2974B8A120F5247200BF7896 /* CreatePostViewController.m */,
 				29E10C5620F6877F009B9396 /* DetailPostViewController.h */,

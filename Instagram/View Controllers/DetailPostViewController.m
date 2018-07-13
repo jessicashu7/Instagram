@@ -83,7 +83,7 @@
     [query whereKey:@"post" equalTo:self.post];
     [query includeKey:@"author"];
     //[query includeKey:@"post"];
-    [query orderByDescending:@"createdAt"];
+    [query orderByAscending:@"createdAt"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *cmts, NSError * _Nullable error) {
         if (cmts != nil){
             NSLog(@"fetched comments successfully");
