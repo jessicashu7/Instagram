@@ -10,9 +10,11 @@
 #import "PostCell.h"
 #import "CommentViewController.h"
 #import "DetailPostViewController.h"
+#import "UIScrollView+SVInfiniteScrolling.h"
 
 @interface ProfileViewController ()
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property int queryCount;
 
 @end
 
@@ -21,12 +23,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.queryCount = 3;
+
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self fetchPosts];
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchPosts) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [self fetchMorePosts];
+    }];
 }
 
 - (void) fetchPosts {
@@ -34,17 +42,17 @@
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"author"];
     [query whereKey:@"author" equalTo:[PFUser currentUser]];
-    query.limit = 5;
+    query.limit = self.queryCount;
     
     //fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError * _Nullable error) {
         if (posts != nil){
             NSLog(@"fetched posts successfully");
             self.posts = posts;
-            [self.tableView reloadData];
-            NSLog(@"end refresh when fetch post successful");
             [self.refreshControl endRefreshing];
-            
+            [self.tableView reloadData];
+            [self.tableView.infiniteScrollingView stopAnimating];
+
             
         }
         else {
@@ -52,6 +60,11 @@
             [self noNetworkAlert];
         }
     }];
+}
+
+- (void) fetchMorePosts {
+    self.queryCount = self.queryCount + 3;
+    [self fetchPosts];
 }
 
 - (void)noNetworkAlert {

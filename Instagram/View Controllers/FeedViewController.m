@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.queryCount = 2;
+    self.queryCount = 3;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self fetchPosts];
@@ -81,9 +81,7 @@
         if (posts != nil){
             NSLog(@"fetched posts successfully");
             self.posts = posts;
-            NSLog(@"end refresh when fetch post successful");
             [self.refreshControl endRefreshing];
-            //self.isMoreDataLoading = false;
             [self.tableView reloadData];
             [self.tableView.infiniteScrollingView stopAnimating];
 
@@ -96,7 +94,7 @@
 }
 
 - (void) fetchMorePosts {
-    self.queryCount = self.queryCount + 1;
+    self.queryCount = self.queryCount + 3;
     [self fetchPosts];
 }
 
