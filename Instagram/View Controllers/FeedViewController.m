@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.queryCount = 3;
+    self.queryCount = 20;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     [self fetchPosts];
@@ -94,7 +94,7 @@
 }
 
 - (void) fetchMorePosts {
-    self.queryCount = self.queryCount + 3;
+    self.queryCount = self.queryCount + 5;
     [self fetchPosts];
 }
 
