@@ -21,16 +21,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yRg-Ke-DMU">
-                                <rect key="frame" x="83" y="137.5" width="208" height="59"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="208" id="7TG-xk-6dE"/>
-                                    <constraint firstAttribute="height" constant="59" id="fUN-4j-iG7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="46"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FuT-NN-rhH">
                                 <rect key="frame" x="49.5" y="252" width="275" height="30"/>
                                 <constraints>
@@ -83,19 +73,26 @@
                                 <color key="textColor" red="0.46128853204284748" green="0.63636388164622715" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Instagram_2016_wordmark" translatesAutoresizingMaskIntoConstraints="NO" id="1uy-BP-734">
+                                <rect key="frame" x="49.5" y="117" width="276" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="276" id="BAe-qZ-EcH"/>
+                                    <constraint firstAttribute="height" constant="100" id="gYI-Qt-o72"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="ScL-db-FRm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1CL-mU-NES"/>
+                            <constraint firstItem="1uy-BP-734" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9o5-AB-djS"/>
                             <constraint firstItem="KLA-5k-u8p" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Knx-57-WLT"/>
                             <constraint firstItem="Kh7-3K-q2K" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="L9e-zf-4iT"/>
-                            <constraint firstItem="yRg-Ke-DMU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="M16-fD-iOS"/>
                             <constraint firstItem="FuT-NN-rhH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OEk-rn-oUW"/>
                             <constraint firstItem="FuT-NN-rhH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.8" id="PlQ-zG-7We"/>
                             <constraint firstItem="Kh7-3K-q2K" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.2" id="eSr-pR-P9D"/>
                             <constraint firstItem="KLA-5k-u8p" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.95" id="euV-o6-QQk"/>
-                            <constraint firstItem="yRg-Ke-DMU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.5" id="flc-Co-kjo"/>
+                            <constraint firstItem="1uy-BP-734" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.5" id="m4d-WU-jfN"/>
                             <constraint firstItem="ScL-db-FRm" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.3" id="zPT-SS-TLi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -116,7 +113,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-7" y="-352"/>
+            <point key="canvasLocation" x="-7.2000000000000002" y="-352.17391304347831"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="uZ0-9A-Oj8">
@@ -718,6 +715,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Instagram_2016_wordmark" width="640" height="182"/>
         <image name="comment" width="128" height="128"/>
         <image name="feed_tab" width="25" height="25"/>
         <image name="heart" width="128" height="128"/>
