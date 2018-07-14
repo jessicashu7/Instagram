@@ -55,6 +55,7 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 - [Instagram UI](https://www.iconfinder.com/iconsets/instagram-ui) - icon set
 - [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD) - progress HUD library
 - [SVPullToRefresh](https://github.com/samvermette/SVPullToRefresh) - infinite scrolling library
+- [Instagram Logo](http://logos.wikia.com/wiki/File:Instagram_2016_wordmark.svg) - graphic
 
 ## Notes
 
