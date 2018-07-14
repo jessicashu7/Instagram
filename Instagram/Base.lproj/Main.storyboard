@@ -616,9 +616,7 @@
                             <outletCollection property="gestureRecognizers" destination="5Pi-1P-gXg" appends="YES" id="9ft-h1-j32"/>
                         </connections>
                     </view>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="GAh-gB-ZE8"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="ULA-en-jzQ">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="D2l-Y8-Df1">
                             <connections>
