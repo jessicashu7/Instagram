@@ -44,6 +44,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 ## Video Walkthrough
 
+![Alt Text](https://media.giphy.com/media/5tsdJUu9SslEVX5LoE/giphy.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
